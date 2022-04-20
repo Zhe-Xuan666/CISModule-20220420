@@ -79,4 +79,4 @@ Since this version, you don't need to define IMAGE_SIZE in config.ini, just need
 update.2022/04/20:
 fix cam_get_image_ext_fmt func.,now you can get image data via 4 parameter(remove BufferType).
 if you want to get Uint8/Uint32/Float data just declare a correspond buffer-type pointer and pass into "out_buffer" in cam_get_image_ext_fmt(void *out_buffer,*,*,*).
-add new part to set stride to 32.
+
