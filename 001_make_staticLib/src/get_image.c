@@ -1,6 +1,5 @@
 // #include "b.h"
 #include "get_image.h"
-#include "tegra-v4l2-camera.h"
 
 typedef struct VideoBuffer
 {
@@ -244,24 +243,6 @@ int cam_init(int IMAGE_WIDTH, int IMAGE_HEIGHT)
     if (ret != 0)
     {
         write_log("[ error ] : VIDIOC_S_FMT");
-        return ret;
-    }
-
-    //set stride to 32
-    struct v4l2_ext_control ctrl;
-    struct v4l2_ext_controls ctrls;
-    memset(&ctrl, 0, sizeof(ctrl));
-    memset(&ctrls, 0, sizeof(ctrls));
-
-    ctrl.id = TEGRA_CAMERA_CID_VI_PREFERRED_STRIDE;
-    ctrl.value = 32;
-    ctrls.controls = &ctrl;
-    ctrls.count = 1;
-    ctrls.which = V4L2_CTRL_WHICH_CUR_VAL;
-    ret = ioctl(cam_fd, VIDIOC_S_EXT_CTRLS, &ctrls);
-    if (ret != 0)
-    {
-        write_log("[ error ] : VIDIOC_S_EXT_CTRLS");
         return ret;
     }
 
